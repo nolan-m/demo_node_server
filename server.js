@@ -1,6 +1,10 @@
-var express		= require('express');
-var app				= express();
-var bodyParser = require('body-parser');
+var express			= require('express');
+var app					= express();
+var bodyParser 	= require('body-parser');
+
+
+var mongoose 		= require('mongoose');
+mongoose.connect('mongodb://node:node@apollo.modulusmongo.net:27017/yja6waNy');
 
 // confgure app to use bodyParser()
 // this will let us get the data from a POST
