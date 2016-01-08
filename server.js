@@ -83,6 +83,18 @@ router.route('/comments/:comment_id')
 					res.json({ message: 'Comment updated!' });
 				})
 			});
+		})
+
+		// delete the comment with this id
+		.delete(function(req,res) {
+			Comment.remove({
+				_id: req.params.comment_id
+			}, function(err, bear) {
+				if (err)
+					res.send(err);
+
+				res.json({ message: 'Successfully deleted' });
+			});
 		});
 
 // REGISTER ROUTES
