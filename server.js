@@ -52,6 +52,17 @@ router.route('/comments')
 				});
 			});
 
+
+router.route('/comments/:comment_id')
+		.get(function(req,res) {
+			Comment.findById(req.params.comment_id, function(err, comment) {
+				if (err)
+					res.send(err);
+
+				res.json(comment);
+			});
+		});
+
 // REGISTER ROUTES
 app.use('/api', router);
 
