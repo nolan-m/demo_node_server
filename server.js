@@ -40,10 +40,17 @@ router.route('/comments')
 						res.send(err);
 					}
 					res.json({ message: 'Comment created!'});
+				})
+			})
+
+			.get(function(req, res) {
+				Comment.find(function(err, comments) {
+					if (err) {
+						res.send(err);
+					}
+					res.json(comments);
 				});
-
 			});
-
 
 // REGISTER ROUTES
 app.use('/api', router);
