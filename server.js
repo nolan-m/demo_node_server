@@ -54,12 +54,34 @@ router.route('/comments')
 
 
 router.route('/comments/:comment_id')
+		// get the comment with this id
 		.get(function(req,res) {
 			Comment.findById(req.params.comment_id, function(err, comment) {
 				if (err)
 					res.send(err);
 
 				res.json(comment);
+			});
+		})
+
+		// update our comment with this id
+		.put(function(req, res) {
+
+			// use the comment model to find the comment
+			Comment.findById(req.params.comment_id, function(err, comment) {
+
+				if (err)
+					res.send(err);
+
+				comment.name = req.body.name; //update the comment info
+
+				//save the comment
+				comment.save(function(err) {
+					if (err)
+						res.send(err);
+
+					res.json({ message: 'Comment updated!' });
+				})
 			});
 		});
 
